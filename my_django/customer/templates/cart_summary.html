@@ -1,0 +1,42 @@
+<!-- cart_summary.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tóm tắt giỏ hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tóm tắt giỏ hàng</h1>
+        <p>Dưới đây là thông tin tóm tắt về giỏ hàng của bạn:</p>
+        <p>Tổng giá: ${{ total_price }}</p>
+        <p>Tổng số lượng: {{ total_quantity }}</p>
+    </div>
+</body>
+</html>

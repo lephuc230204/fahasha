@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập</title>
+    <style>
+        form {
+            display: flex; /* Chuyển đổi form thành flexbox */
+            flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+            width: 300px; /* Chiều rộng form */
+            margin: 0 auto; /* Canh giữa form */
+            padding: 20px; /* Thêm padding cho form */
+            border: 1px solid #ccc; /* Thêm đường viền cho form */
+            border-radius: 5px; /* Làm tròn các góc form */
+          }
+          
+        
+        h1 {
+            color: #FF9900;
+            text-align: center; 
+            margin-bottom: 20px; /* Thêm khoảng cách dưới tiêu đề */
+          }
+          
+        
+        label {
+            display: block; /* Chuyển đổi nhãn thành block để chiếm toàn bộ chiều rộng */
+            margin-bottom: 5px; /* Thêm khoảng cách dưới nhãn */
+          }
+          
+          /* Cài đặt cho input */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Chiều rộng input 100% */
+            padding: 10px; /* Thêm padding cho input */
+            border: 1px solid #ccc; /* Thêm đường viền cho input */
+            border-radius: 3px; /* Làm tròn các góc input */
+            box-sizing: border-box; /* Bao gồm padding vào chiều rộng input */
+          }
+          
+          /* Cài đặt cho button */
+        button {
+            width: 100%; /* Chiều rộng button 100% */
+            padding: 10px; /* Thêm padding cho button */
+            background-color: #007bff; /* Màu nền button */
+            color: white; /* Màu chữ button */
+            border: none; /* Xóa đường viền button */
+            border-radius: 5px; /* Làm tròn các góc button */
+            cursor: pointer; /* Con trỏ chuột thành pointer khi di chuột qua button */
+          }
+    </style>
+</head>
+<body>
+    <h1>Đăng nhập</h1>
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password"><br>
+        <button type="submit">Đăng nhập</button>
+    </form>
+</body>
+</html>

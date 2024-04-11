@@ -1,0 +1,18 @@
+<!-- cart.html -->
+<h1>Giỏ hàng</h1>
+<ul>
+  {% for item in cart_items %}
+  <li>
+    <div class="cart-item">
+      <h3>{{ item.product.name }}</h3>
+      <p>Giá: ${{ item.product.price }}</p>
+      <p>Số lượng: {{ item.quantity }}</p>
+      <p class="total-price">Tổng tiền: ${{ item.total_price }}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+<p>Tổng số lượng sản phẩm: {{ total_quantity }}</p>
+<p>Tổng giá trị đơn hàng: ${{ total_price }}</p>
+<a href="{% url 'product_list' %}">Tiếp tục mua hàng</a>
+<a href="{% url 'cart_summary' %}">Xem tóm tắt đơn hàng</a>

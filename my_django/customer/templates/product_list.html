@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .first-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .first-view h1 {
+            color: black;
+            margin: 0;
+        }
+
+        .first-view .in4-hidden {
+            display: none; 
+        }
+        
+        .first-view:hover .in4-hidden {
+            display: block; 
+        }
+
+        .taikhoan {
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 10px;
+        }
+
+        .taikhoan .hidden-sign {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 200px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .taikhoan:hover .hidden-sign {
+            display: block;
+        }
+        
+        .custom-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-card h2 {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .custom-card p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .category-list {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .category-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+        }
+
+        .category-list a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Thêm CSS mới cho biểu tượng tài khoản */
+        .taikhoan button {
+            background-color: transparent;
+            color: #007bff;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .taikhoan button i {
+            font-size: 24px;
+        }
+
+        .taikhoan .hidden-sign button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .taikhoan .hidden-sign button:hover {
+            background-color: #0056b3;
+        }
+        .product-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .custom-card button {
+            width: 100px;
+            height: 30px;
+            background-color: #007bff;
+            color: white;
+            padding: 3px 3px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+        .custom-card button:hover {
+            background-color: #0056b3;
+        }
+        .custom-card h1 {
+            color: red;
+        }
+        .custom-card {
+            position: relative;
+            width: 200px;
+        }
+        .custom-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        form input[type="number"] {
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: center;
+        }
+        .custom-card .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .custom-card label {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        .custom-card input[type="number"] {
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: center;
+            margin-right: 5px;
+        }
+        
+        .custom-card button[type="submit"] {
+            width: 60px;
+            height: 30px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="first-view">
+        <img src="https://bizweb.dktcdn.net/100/362/101/themes/894796/assets/slider_1.jpg?1676263505057">
+        <button id="show-categories">Hiển thị danh mục sản phẩm</button>
+        <div class="category-list">
+            <ul>
+                <li><a href="#">Danh mục 1</a></li>
+                <li><a href="#">Danh mục 2</a></li>
+                <li><a href="#">Danh mục 3</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class ="taikhoan">
+    <button onclick="window.location.href='/register'">Tài khoản </button>
+    <div class = "hidden-sign">
+        <button onclick="window.location.href='/login'">Đăng nhập</button>
+        <button onclick="window.location.href='/register'">Đăng ký</button>
+    </div>
+    </div>
+
+
+    <h2>Danh sách các sản phẩm của chúng tôi</h2>
+<div class="product-block">
+    {% for product in products %}
+    <div class="custom-card">
+        <img src="{{ product.profile_picture.url }}" alt="{{ product.name }}" style="width: 100%; height: auto; margin-bottom: 10px;">
+        <h2 style="text-align: center;">{{ product.name }}</h2>
+        <p style="text-align: center;">Giá: ${{ product.price }}</p>
+        <form action="{% url 'add_to_cart' product.id %}" method="POST" style="display: flex; flex-direction: column;">
+            {% csrf_token %}
+            <label for="quantity">Số lượng:</label>
+            <div class="input-group">
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+    
+    <p>Liên hệ với chúng tôi:</p>
+    <p class="in4-hidden">
+        Facebook: <a href="https://www.facebook.com/?locale=vi_VN">Lê Minh Phúc</a> <br>
+        Email: <a href="mailto:lephuc04b3@gmail.com">lephuc04b3@gmail.com</a> <br>
+        Phone: <a href="tel:+84528661656">0528661656</a> <br>
+        Fax: 0123456789
+    </p>
+
+</body>
